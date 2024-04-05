@@ -1,3 +1,3 @@
-import {LogInPage} from "../components/templates/LogInPage";
+import {SignPage} from "../components/templates/sign/SignPage";
 
-export const AuthLayout = () => <LogInPage/>
+export const AuthLayout = () => <SignPage/>
