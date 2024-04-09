@@ -1,8 +1,17 @@
 :root {
+    font-family: Lato;
     --DarkBlue: #004E98;
     --LightBlue: #3A6EA5;
     --Gray: #C0C0C0;
     --LightGray: #EBEBEB;
     --Orange: #f3751f;
     --DarkOrange: #c7610e;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+html,body{
+    padding: 0;
+    margin: 0;
 }
