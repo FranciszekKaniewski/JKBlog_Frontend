@@ -2,24 +2,27 @@ import {useEffect, useState} from "react";
 import {PostInfo} from "../../../types/posts/posts";
 import {getPosts} from "../../../api/posts/posts";
 import {PostInfoSquare} from "../../molecules/PostInfoSquare/PostInfoSquare";
-
-import './posts.css'
 import {sort} from "../../../utils/sort";
 
-export const Posts = () => {
+import './all-posts.css'
+
+export const AllPosts = () => {
 
     const [posts, setPosts] = useState<PostInfo[]|null>(null);
+    const [sortType, setSortType] = useState("ASC");
 
     useEffect(()=> {
         (async()=>{
             const posts = await getPosts()
-            const sorted = sort(posts,'ASC');
+            const sorted = sort(posts,sortType);
 
             setPosts(sorted);
         })()
-    },[])
+    },[sortType])
 
-    const postsElement = posts?.map(e =>
+    if(!posts) return <h1>Loading...</h1>
+
+    const postsElement = posts.map(e =>
         <PostInfoSquare
             key={e.id}
             id={e.id}
@@ -30,11 +33,9 @@ export const Posts = () => {
             createTime={e.createTime}
         />)
 
-    return(
-        <>
-            <div className='posts'>
-                {posts ? postsElement : null}
-            </div>
-        </>
+    return (
+        <div className='all-posts'>
+            {posts ? postsElement : null}
+        </div>
     )
 }

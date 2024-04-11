@@ -45,14 +45,14 @@ export const CreatePost = () => {
     return (
         <form className='post-editor' onSubmit={handleSubmit}>
             <span>Tytuł wpisu:</span>
-            <Input value={title} onChange={setTitle} />
+            <Input value={title} onChange={setTitle} required={true}/>
             <span>Autor wpisu:</span>
-            <Input value={author} onChange={setAuthor} />
+            <Input value={author} onChange={setAuthor} required={true}/>
             <span>Kategoria wpisu:</span>
-            <Input value={category} onChange={setCategory} />
+            <Input value={category} onChange={setCategory} required={true}/>
             <span>Opis wpisu:</span>
             <textarea cols="10" rows="10" value={description} onChange={(e)=>setDescription(e.target.value)}></textarea>
-            <ReactQuill theme="snow" value={content} onChange={setContent} />
+            <ReactQuill theme="snow" value={content} onChange={setContent} required={true}/>
             <Button text={edit?'Zapisz zmiany':'Utwóż wpis'}/>
         </form>
     );

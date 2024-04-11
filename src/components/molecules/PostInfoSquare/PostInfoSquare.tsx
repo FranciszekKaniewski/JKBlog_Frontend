@@ -15,7 +15,7 @@ export const PostInfoSquare = ({id,title,category,description,author,createTime}
                 <PostInfoPin text={dataConvert(createTime)}/>
             </div>
             <div className="text">
-                <Link to={`wpisy/${title}`}><h1 className='post-title'>{title}</h1></Link>
+                <Link to={`/wpisy/${title}`}><h1 className='post-title'>{title}</h1></Link>
                 {description ? <p className='post-desc'>{description}</p> : <p>brak opisu.</p>}
             </div>
         </div>

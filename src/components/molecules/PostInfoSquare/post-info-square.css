@@ -21,7 +21,7 @@
     padding: 0 10px;
 }
 
-.post-info > .text > .post-title {
+.post-info > .text > a > .post-title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -34,11 +34,11 @@
     text-overflow: ellipsis;
 }
 
-.post-info:nth-child(3n){
+.posts>.post-info:nth-child(3n){
     flex-basis: 100%;
     height: 450px;
 }
-.post-info:nth-child(3n) > .img{
+.posts>.post-info:nth-child(3n) > .img{
     height: 65%;
 }
 
@@ -46,10 +46,10 @@
     .post-info{
         flex-basis: 100%;
     }
-    .post-info:nth-child(3n){
+    .posts>.post-info:nth-child(3n){
         height: 300px;
     }
-    .post-info:nth-child(3n) > .img{
+    .posts>.post-info:nth-child(3n) > .img{
         height: 50%;
     }
 }

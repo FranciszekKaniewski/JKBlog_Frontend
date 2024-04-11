@@ -5,6 +5,7 @@ import {Auth} from "./utils/auth";
 import {LogOutPage} from "./layouts/LogOutPage";
 import {PostLayout} from "./layouts/PostLayout";
 import {CreatePostLayout} from "./layouts/CreatePost";
+import {AllPostsLayout} from "./layouts/AllPostsLayout";
 
 
 export const router = createBrowserRouter([
@@ -15,11 +16,15 @@ export const router = createBrowserRouter([
     },
     {
         path: "/login",
-        element: <Auth allowedRoles={[null]} page={<AuthLayout/>} errorPage={"/"}/>,
+        element: <Auth allowedRoles={[null]} page={<AuthLayout/>} errorPage={"/logout"}/>,
     },
     {
         path: "/logout",
         element: <Auth allowedRoles={['admin','user']} page={<LogOutPage/>} errorPage={"/"}/>,
+    },
+    {
+        path: "/wpisy",
+        element: <AllPostsLayout/>,
     },
     {
         path: "/wpisy/:title",

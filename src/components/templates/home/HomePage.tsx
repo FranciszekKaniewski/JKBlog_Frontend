@@ -9,13 +9,9 @@ export const HomePage = () => {
 
     return (
         <>
-            {/*<h1>Witaj na stronie głównej {auth.name} twoja rola to {auth.role} </h1>*/}
-            {/*<h2>Blog dla wyszystkich!</h2>*/}
             <Banner />
             <Separator text={"Najnowsze wpisy"}/>
             <Posts />
-            {auth.role != null ? <h2>Dla zalogowanych</h2>:null}
-            {auth.role === 'admin' ? <h2>Toajne ADMIN</h2>:null}
         </>
     )
 }

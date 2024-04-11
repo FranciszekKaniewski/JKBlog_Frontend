@@ -1,9 +1,17 @@
 import './banner.css'
+import {usePopUp} from "../../../hooks/usePopUp";
 
 export const Banner = () => {
 
+    const { printMessage } = usePopUp();
+
+    const fn = () => {
+
+        printMessage({text:`Hasło powwino zjmować tyle i tyle i nie byc puste`,type:"ERROR"})
+    }
+
     return(
-        <div className="banner">
+        <div className="banner" onClick={fn}>
             <div className="img"></div>
             <div className="text">
                 <h1>Joanna Kaniewska</h1>

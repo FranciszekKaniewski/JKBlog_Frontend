@@ -1,0 +1,8 @@
+.messages{
+    position: fixed;
+    width: 500px;
+    height: 20%;
+    right: 1%;
+    top: 2%;
+    overflow-y: scroll;
+}
