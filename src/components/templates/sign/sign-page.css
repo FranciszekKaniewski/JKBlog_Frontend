@@ -12,7 +12,7 @@
     margin-bottom: 0px;
 }
 
-form{
+.auth>form{
     display: flex;
     flex-wrap: wrap;
     width: 200px;

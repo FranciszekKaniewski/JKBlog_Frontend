@@ -4,6 +4,7 @@ import {HomeLayout} from "./layouts/HomeLayout";
 import {Auth} from "./utils/auth";
 import {LogOutPage} from "./layouts/LogOutPage";
 import {PostLayout} from "./layouts/PostLayout";
+import {CreatePostLayout} from "./layouts/CreatePost";
 
 
 export const router = createBrowserRouter([
@@ -21,7 +22,11 @@ export const router = createBrowserRouter([
         element: <Auth allowedRoles={['admin','user']} page={<LogOutPage/>} errorPage={"/"}/>,
     },
     {
-        path: "/post",
+        path: "/wpisy/:title",
         element: <PostLayout />,
+    },
+    {
+        path: "wpisy/nowy",
+        element: <Auth allowedRoles={['admin']} page={<CreatePostLayout />} errorPage={"/"}/>,
     },
 ]);

@@ -1,0 +1,39 @@
+.post-editor{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+.post-editor > input{
+    margin-bottom: 20px;
+}
+.post-editor > .desc{
+    height: 200px;
+}
+.post-editor > button{
+    margin: 20px auto;
+    height: 50px;
+    width: 250px;
+}
+
+textarea{
+    font-size: 14px;
+    border-radius: 6px;
+    line-height: 1.5;
+    margin: 5px 5px 20px 5px;
+    padding: 5px 10px;
+    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    border: 2px solid #dee1e2;
+    color: rgb(14, 14, 16);
+    background: #dee1e2;
+    display: block;
+}
+
+textarea:hover {
+    border-color: #ccc;
+}
+textarea:focus{
+    outline: none;
+    border-color: var(--DarkBlue);
+    background: #fff;
+}
