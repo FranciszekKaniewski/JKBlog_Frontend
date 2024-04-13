@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import {Input} from "../../atoms/input";
 import {Button} from "../../atoms/button";
 import {createPost, editPost, getPost} from "../../../api/posts/posts";
 import {usePopUp} from "../../../hooks/usePopUp";
 import {useNavigate} from 'react-router-dom'
 import {CreatePostType} from "../../../types/posts/posts";
-
-import './create-post.css'
 import EditorToolbar, {formats, modules} from "../../../utils/EditorToolbar";
 
+import './create-post.css'
+import 'react-quill/dist/quill.snow.css';
 
 
 export const CreatePost = () => {

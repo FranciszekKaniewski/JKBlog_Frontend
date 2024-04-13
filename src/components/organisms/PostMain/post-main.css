@@ -1,0 +1,37 @@
+.post-main{
+    display: flex;
+    margin: 20px;
+    margin-top: 0;
+}
+.post-main > .content{
+    width: 70%;
+    margin: 10px;
+    box-shadow: 2px 2px 10px var(--DarkGray);
+    border-radius: 10px;
+}
+.post-main > .right-posts{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 20px;
+}
+.post-main > .right-posts>*{
+    max-height: 300px;
+}
+
+@media only screen and (max-width: 990px) {
+    .post-main{
+        flex-direction: column;
+    }
+    .post-main > .content {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .post-main > .right-posts{
+        margin: 0 auto;
+        width: 100%;
+        padding: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

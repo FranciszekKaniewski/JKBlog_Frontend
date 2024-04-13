@@ -19,7 +19,7 @@ export const Posts = () => {
         })()
     },[])
 
-    const postsElement = posts?.map(e =>
+    const postsElement = posts?.slice(0, 5).map(e =>
         <PostInfoSquare
             key={e.id}
             id={e.id}

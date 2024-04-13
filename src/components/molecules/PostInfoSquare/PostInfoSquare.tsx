@@ -1,10 +1,11 @@
 import {PostInfo} from "../../../types/posts/posts";
 
-import './post-info-square.css';
 // import forestImg from '../../../assets/imgs/Forest.jpg';
 import {PostInfoPin} from "../../atoms/PostInfoPin/PostInfoPin";
 import {dataConvert} from "../../../utils/dataConvert";
 import {Link} from "react-router-dom";
+
+import './post-info-square.css';
 
 export const PostInfoSquare = ({id,title,category,description,author,createTime}:PostInfo) => {
 
@@ -13,6 +14,7 @@ export const PostInfoSquare = ({id,title,category,description,author,createTime}
             <div className="img">
                 {/*<img src={forestImg} alt="forest"/>*/}
                 <PostInfoPin text={dataConvert(createTime)}/>
+                <PostInfoPin text={category}/>
             </div>
             <div className="text">
                 <Link to={`/wpisy/${title}`}><h1 className='post-title'>{title}</h1></Link>

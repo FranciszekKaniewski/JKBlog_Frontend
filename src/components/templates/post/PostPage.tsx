@@ -1,12 +1,14 @@
-import {Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import {deletePost, getPost} from "../../../api/posts/posts";
 import {Post} from "../../../types/posts/posts";
 import {dataConvert} from "../../../utils/dataConvert";
 import {useAuth} from "../../../hooks/useAuth";
-import {Button} from "../../atoms/button";
 import {usePopUp} from "../../../hooks/usePopUp";
 import {useNavigate} from 'react-router-dom'
+import {PostMain} from "../../organisms/PostMain/PostMain";
+import {PostHeader} from "../../organisms/PostHeader/PostHeader";
+
 
 export const PostPage = () => {
 
@@ -39,18 +41,15 @@ export const PostPage = () => {
 
     return (
         <>
-            <h1>{post.title}</h1>
-            {auth?.role === 'admin' ?
-                <div className="buttons">
-                    <Link to={`/wpisy/nowy/?edit=${post.title}`}><Button text={'edit'}/></Link>
-                    <Button text={'delete'} onClick={deleteHandler}/>
-                </div> :
-                null
-            }
-            <p>{post.author} / { dataConvert( post.createTime ) }</p>
-            <p>{post.description}</p>
-            <br/><br/>
-            <div className="content" dangerouslySetInnerHTML={{__html: post.content}}></div>
+            <PostHeader
+                role={auth?.role}
+                title={post.title}
+                author={post.author}
+                date={dataConvert(post.createTime)}
+                description={post.description}
+                deleteHandler={deleteHandler}
+            />
+            <PostMain content={post.content} category={post.category}/>
         </>
     )
 }
