@@ -5,24 +5,47 @@ import {PostInfoSquare} from "../../molecules/PostInfoSquare/PostInfoSquare";
 import {sort} from "../../../utils/sort";
 
 import './all-posts.css'
+import {PostsSearchBar} from "../../molecules/PostsSearchBar/PostsSearchBar";
 
 export const AllPosts = () => {
 
     const [posts, setPosts] = useState<PostInfo[]|null>(null);
-    const [sortType, setSortType] = useState("ASC");
+
+    const [sortDir, setSortDir] = useState<'ASC'|'DESC'>("ASC");
+    const [sortType, setSortType] = useState<'DATE'|'TITLE'|'CATEGORY'>("DATE");
+
+    const [search, setSearch] = useState<string>('');
+
 
     useEffect(()=> {
         (async()=>{
             const posts = await getPosts()
-            const sorted = sort(posts,sortType);
+            const sorted = sort(posts, sortDir, sortType);
 
             setPosts(sorted);
         })()
-    },[sortType])
+    },[])
+
+    const changeSortDir = () => {
+        setSortDir(prevState => prevState === 'ASC' ? 'DESC' : 'ASC');
+        const sorted = sort(posts, sortDir=== 'ASC' ? 'DESC' : 'ASC', sortType);
+        setPosts(sorted);
+    }
+    const changeSortType = (e) => {
+        setSortType(e.target.value);
+        const sorted = sort(posts, sortDir, e.target.value);
+        setPosts(sorted);
+    }
+    const changeSearchBar = (e) => {
+        setSearch(e)
+    }
 
     if(!posts) return <h1>Loading...</h1>
 
-    const postsElement = posts.map(e =>
+    const postsElement = posts.filter(e =>
+        e.title.toUpperCase().includes(search.toUpperCase()) ||
+        e.description?.toUpperCase().includes(search.toUpperCase()) ||
+        e.category.toUpperCase().includes(search.toUpperCase())).map( e =>
         <PostInfoSquare
             key={e.id}
             id={e.id}
@@ -34,8 +57,20 @@ export const AllPosts = () => {
         />)
 
     return (
-        <div className='all-posts'>
-            {posts ? postsElement : null}
-        </div>
+        <>
+            <h1 className='center'>Wszystkie wpisy</h1>
+            <PostsSearchBar
+                search={search}
+                changeSearchBar={changeSearchBar}
+                sortType={sortType}
+                changeSortType={changeSortType}
+                sortDir={sortDir}
+                changeSortDir={changeSortDir}
+            />
+            <hr/>
+            <div className='all-posts'>
+                {posts ? postsElement : null}
+            </div>
+        </>
     )
 }

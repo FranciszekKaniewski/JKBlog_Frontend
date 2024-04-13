@@ -10,10 +10,10 @@ export const useAuth = () => {
         (async()=>{
 
             const res = await Fetch('/users');
-            !res.isSuccess ? setAuth({name: 'unknown-user', role: null}) : setAuth(res.body);
+            !res.isSuccess ? setAuth(null) : setAuth(res.body);
 
         })()
-    },[auth.role,auth.name])
+    },[auth?.role,auth?.name])
 
     return useContext(AuthContext);
 }

@@ -2,3 +2,6 @@ a{
     text-decoration: none;
     color: var(--DarkGray);
 }
+.center{
+    text-align: center;
+}

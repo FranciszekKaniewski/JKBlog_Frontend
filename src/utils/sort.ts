@@ -1,13 +1,21 @@
-export const sort = (data:any,type:string) => {
-    switch (type){
-        case 'ASC':
-            data.sort((a,b) => a.createTime > b.createTime ? -1 : 1);
+type sortDirType = 'ASC' | 'DESC'
+type ByType = 'DATE' | 'TITLE' | 'CATEGORY'
+
+
+export const sort = (data:any,type:sortDirType='ASC',by:ByType='DATE') => {
+    const x = type === 'ASC' ? 1 : -1
+    const y = type === 'DESC' ? 1 : -1
+
+    switch(by){
+        case "DATE":
+            data.sort((a,b) => a.createTime > b.createTime ? y : x);
             break;
-        case 'DESC':
-            data.sort((a,b) => a.createTime > b.createTime ? 1 : -1);
+        case "CATEGORY":
+            data.sort((a,b) => a.category > b.category ? x : y);
             break;
-        default:
-            data.sort((a,b) => a.createTime > b.createTime ? -1 : 1);
+        case "TITLE":
+            data.sort((a,b) => a.title.toUpperCase() > b.title.toUpperCase() ? x : y);
+            break;
     }
 
     return data;

@@ -1,11 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {Input} from "../../atoms/input";
 import {Button} from "../../atoms/button";
 import {createPost, editPost, getPost} from "../../../api/posts/posts";
+import {usePopUp} from "../../../hooks/usePopUp";
+import {useNavigate} from 'react-router-dom'
+import {CreatePostType} from "../../../types/posts/posts";
 
 import './create-post.css'
+import EditorToolbar, {formats, modules} from "../../../utils/EditorToolbar";
+
 
 
 export const CreatePost = () => {
@@ -16,8 +21,14 @@ export const CreatePost = () => {
     const [content, setContent] = useState('');
     const [edit, setEdit] = useState(false);
 
+    const [backUp, setBackUp] = useState<CreatePostType|null>(null);
+
     const queryParams = new URLSearchParams(window.location.search);
     const editParam = queryParams.get('edit');
+
+    const {printMessage} = usePopUp()
+
+    const navigate = useNavigate();
 
 
     useEffect(()=>{
@@ -25,12 +36,23 @@ export const CreatePost = () => {
             if(editParam) {
                 const res = await getPost(editParam);
 
-                if(!res) return;
+                if(!res) {
+                    printMessage({text:`Nie udało się znaleść wpisu ${editParam}`,type:'ERROR'});
+                    return;
+                }
                 setTitle(res.title);
                 setDescription(res.description ?? "");
                 setAuthor(res.author);
                 setCategory(res.category);
                 setContent(res.content);
+
+                setBackUp({
+                    title: res.title,
+                    description: res.description ?? "",
+                    author: res.author,
+                    category: res.category,
+                    content: res.content,
+                });
                 setEdit(true);
             }
         })()
@@ -39,7 +61,24 @@ export const CreatePost = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const post = {title,description,author,category,content}
-        !edit ? await createPost(post) : await editPost(editParam,post);
+
+        const res = !edit ? await createPost(post) : await editPost(editParam,post);
+
+        if(res.isSuccess) {
+            navigate(`/wpisy/${title}`);
+            printMessage({text:"Wpis dodano poprawnie!",type:'SUCCESS'});
+        }else{
+            printMessage({text:res.body[0],type:'ERROR'});
+        }
+    }
+
+    const backChanges = async (e) => {
+        e.preventDefault()
+        setTitle(backUp ? backUp.title : '');
+        setDescription(backUp ? backUp.description : '');
+        setAuthor(backUp ? backUp.author : '');
+        setCategory(backUp ? backUp.category : '');
+        setContent(backUp ? backUp.content : '');
     }
 
     return (
@@ -52,8 +91,11 @@ export const CreatePost = () => {
             <Input value={category} onChange={setCategory} required={true}/>
             <span>Opis wpisu:</span>
             <textarea cols="10" rows="10" value={description} onChange={(e)=>setDescription(e.target.value)}></textarea>
-            <ReactQuill theme="snow" value={content} onChange={setContent} required={true}/>
+            <EditorToolbar />
+            <ReactQuill modules={modules} formats={formats} theme="snow" value={content} onChange={setContent} required={true}/>
+            {edit ? <Button text={"Cofnij zmiany"} onClick={backChanges}/> : null}
             <Button text={edit?'Zapisz zmiany':'Utwóż wpis'}/>
+
         </form>
     );
 }

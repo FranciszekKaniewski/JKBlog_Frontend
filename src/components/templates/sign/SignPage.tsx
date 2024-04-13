@@ -21,7 +21,7 @@ export const SignPage = () => {
     const [surname, setSurname] = useState("");
 
 
-    const { auth, setAuth } = useAuth();
+    const { setAuth } = useAuth();
 
 
     const loginFetch = async (e) =>{

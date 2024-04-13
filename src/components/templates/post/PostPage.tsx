@@ -5,13 +5,17 @@ import {Post} from "../../../types/posts/posts";
 import {dataConvert} from "../../../utils/dataConvert";
 import {useAuth} from "../../../hooks/useAuth";
 import {Button} from "../../atoms/button";
+import {usePopUp} from "../../../hooks/usePopUp";
+import {useNavigate} from 'react-router-dom'
 
 export const PostPage = () => {
 
-    const { title } = useParams()
-
     const [post, setPost] = useState<Post|null>(null);
+
+    const { title } = useParams()
     const {auth} = useAuth()
+    const navigate = useNavigate();
+    const {printMessage} = usePopUp()
 
     useEffect(()=>{(async ()=>{
         setPost(await getPost(title))
@@ -20,7 +24,15 @@ export const PostPage = () => {
     const deleteHandler = async () => {
         const bool = window.confirm(`Czy na pewno chcesz usunąć wpis ${title}`)
         if(!post || !bool) return;
-        await deletePost(post.id)
+
+        const res = await deletePost(post.id)
+
+        if(res.isSuccess){
+            navigate('/wpisy');
+            printMessage({text: `Wpis ${title} usunięty poprawnie`, type: "SUCCESS"} );
+        }else{
+            printMessage( {text:(res.body as string), type:"ERROR"} );
+        }
     }
 
     if(!post) return <h1>loading...</h1>
@@ -28,7 +40,7 @@ export const PostPage = () => {
     return (
         <>
             <h1>{post.title}</h1>
-            {auth.role === 'admin' ?
+            {auth?.role === 'admin' ?
                 <div className="buttons">
                     <Link to={`/wpisy/nowy/?edit=${post.title}`}><Button text={'edit'}/></Link>
                     <Button text={'delete'} onClick={deleteHandler}/>

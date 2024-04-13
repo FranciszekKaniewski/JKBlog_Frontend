@@ -1,13 +1,15 @@
 export type User = {
-    id: string;
     username: string;
     name: string | null;
     surname: string | null;
     email: string;
     role: string;
-    hashPwd: string;
     createTime: Date;
-    currentTokenId: string | null;
+}
+
+export type UserInfoType = {
+    username: string;
+    role: string;
 }
 
 export type UserRegister = {

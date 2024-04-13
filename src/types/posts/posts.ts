@@ -15,7 +15,7 @@ export interface Post {
     content: string;
     createTime: Date;
 }
-export interface CreatePost {
+export interface CreatePostType {
     title: string;
     category: string;
     description: string | null;

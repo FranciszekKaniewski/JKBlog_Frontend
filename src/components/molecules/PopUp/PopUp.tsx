@@ -13,7 +13,12 @@ export const PopUp = ({message}:{message:Message}) =>{
         if(message) messages?.setMessages(prevState => prevState.slice(1));
     }
 
-    const style = {backgroundColor: "red"}
+    const style =
+        message.type === "ERROR" ?
+            {backgroundColor: "var(--Red)"} :
+        message.type === "SUCCESS" ?
+            {backgroundColor: "var(--Green)"} :
+            {backgroundColor: "var(--Gray)"}
 
     return(
         message?<div onClick={remove} style={style} className="pop-up">
