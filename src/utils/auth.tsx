@@ -4,7 +4,12 @@ import { Navigate } from "react-router-dom";
 export const Auth = ({ allowedRoles, page, errorPage }) => {
     const {auth} = useAuth();
 
-    if((!allowedRoles.includes(auth?.role) && auth?.role !== undefined)){
+    if(auth === null){
+        return <h1>Loading...</h1>
+    }
+
+
+    if(!allowedRoles.includes(auth ? auth.role : null)){
         return <Navigate to={errorPage} replace={true}/>
     }
 

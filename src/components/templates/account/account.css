@@ -1,0 +1,16 @@
+.account-page{
+    margin: 60px;
+}
+@media only screen and (max-width: 575px) {
+    .account-page{
+        margin: 10px;
+        text-align: center;
+    }
+    .account-page>button,.account-page>form>input{
+        display: block;
+        margin: auto;
+    }
+    .account-page>form>button{
+        margin-top: 10px;
+    }
+}

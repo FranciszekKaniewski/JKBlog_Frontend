@@ -17,6 +17,7 @@ export const AllPosts = () => {
     const [search, setSearch] = useState<string>('');
 
 
+    let ignore = false;
     useEffect(()=> {
         (async()=>{
             const posts = await getPosts()
@@ -24,6 +25,7 @@ export const AllPosts = () => {
 
             setPosts(sorted);
         })()
+        return () => { ignore = true }
     },[])
 
     const changeSortDir = () => {
@@ -54,6 +56,7 @@ export const AllPosts = () => {
             description={e.description}
             author={e.author}
             createTime={e.createTime}
+            imgUrl={e.imgUrl}
         />)
 
     return (

@@ -7,6 +7,7 @@ import {login} from "../../../api/auth/login";
 import {useAuth} from "../../../hooks/useAuth";
 import {SignInForm} from "../../molecules/SignInForm";
 import {SignUpForm} from "../../molecules/SignUpForm";
+import {usePopUp} from "../../../hooks/usePopUp";
 
 export const SignPage = () => {
 
@@ -22,12 +23,24 @@ export const SignPage = () => {
 
 
     const { setAuth } = useAuth();
+    const {printMessage} = usePopUp();
 
 
     const loginFetch = async (e) =>{
         e.preventDefault();
         const res = await login({email,pwd:password});
-        setAuth({role: res.body.role,name: res.body.username});
+
+        console.log(res)
+        if(res.isSuccess) {
+            printMessage({text:"Zalogowano",type:"SUCCESS"})
+            setAuth({role: res.body.role,name: res.body.username});
+        }else{
+            res.body === 429 ?
+                printMessage({text:"Zbyt wiele prób logowania! Spróbuj ponownie za 5 min.",type:"ERROR"}):
+                printMessage({text:res.body,type:"ERROR"})
+            setEmail('')
+            setPassword('')
+        }
     }
 
     const registerFetch = async(e) =>{

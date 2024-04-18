@@ -28,6 +28,7 @@ export const Posts = () => {
             description={e.description}
             author={e.author}
             createTime={e.createTime}
+            imgUrl={e.imgUrl}
         />)
 
     return(

@@ -1,18 +1,21 @@
 import {PostInfo} from "../../../types/posts/posts";
 
-// import forestImg from '../../../assets/imgs/Forest.jpg';
+// import forestImg from '../../../assets/imgs/NoImage.jpg';
 import {PostInfoPin} from "../../atoms/PostInfoPin/PostInfoPin";
 import {dataConvert} from "../../../utils/dataConvert";
 import {Link} from "react-router-dom";
+import {config} from "../../../config";
 
 import './post-info-square.css';
 
-export const PostInfoSquare = ({id,title,category,description,author,createTime}:PostInfo) => {
+
+export const PostInfoSquare = ({id,title,category,description,author,createTime,imgUrl}:PostInfo) => {
+
+    const imgStyle = {backgroundImage: `url("${config.backendURL}/img/${imgUrl?.replace(/['"]+/g, '')}")`};
 
     return(
         <div className='post-info'>
-            <div className="img">
-                {/*<img src={forestImg} alt="forest"/>*/}
+            <div style={imgUrl ? imgStyle : {}} className="img">
                 <PostInfoPin text={dataConvert(createTime)}/>
                 <PostInfoPin text={category}/>
             </div>

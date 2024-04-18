@@ -12,7 +12,7 @@ export const Messages = () => {
     const view = messages?.value.map((e,i)=> <PopUp key={i} message={e} />)
 
     return(
-        messages.value[0] ? <div className="pop-up messages">
+        messages?.value[0] ? <div className="pop-up messages">
             {view}
         </div>: null
     )

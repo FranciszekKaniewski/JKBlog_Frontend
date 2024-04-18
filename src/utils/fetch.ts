@@ -17,5 +17,5 @@ export const Fetch = async (url:string,method?:methods,body?:any):Promise<{ isSu
     return res.status === 201 || res.status === 200 ?
         {isSuccess: true, body: resBody}
         :
-        {isSuccess: false, body: resBody.message}
+        {isSuccess: false, body: resBody.message ?? res.status}
 }

@@ -13,15 +13,22 @@ import {PostHeader} from "../../organisms/PostHeader/PostHeader";
 export const PostPage = () => {
 
     const [post, setPost] = useState<Post|null>(null);
+    const [loading, setLoading] = useState(false);
 
     const { title } = useParams()
     const {auth} = useAuth()
     const navigate = useNavigate();
     const {printMessage} = usePopUp()
 
+    let ignore = false;
     useEffect(()=>{(async ()=>{
-        setPost(await getPost(title))
-    })()},[])
+        if(!ignore) {
+            setLoading(true)
+            setPost(await getPost(title))
+            setLoading(false)
+        }
+        return () => { ignore = true }
+    })()},[title])
 
     const deleteHandler = async () => {
         const bool = window.confirm(`Czy na pewno chcesz usunąć wpis ${title}`)
@@ -39,6 +46,7 @@ export const PostPage = () => {
 
     if(!post) return <h1>loading...</h1>
 
+    if(loading) return <h1>Loading</h1>
     return (
         <>
             <PostHeader
@@ -49,7 +57,7 @@ export const PostPage = () => {
                 description={post.description}
                 deleteHandler={deleteHandler}
             />
-            <PostMain content={post.content} category={post.category}/>
+            <PostMain title={post.title} content={post.content} category={post.category}/>
         </>
     )
 }

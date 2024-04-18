@@ -10,12 +10,10 @@
     border-radius: 10px;
 }
 .post-main > .right-posts{
-    display: flex;
-    flex-direction: column;
     width: 30%;
     padding: 20px;
 }
-.post-main > .right-posts>*{
+.post-main > .right-posts>.post-info{
     max-height: 300px;
 }
 

@@ -6,14 +6,18 @@ export const useAuth = () => {
 
     const {auth, setAuth} = useContext(AuthContext);
 
+    let ignore = false;
     useEffect(()=>{
-        (async()=>{
+        if (!ignore) {
+            (async () => {
 
-            const res = await Fetch('/users');
-            !res.isSuccess ? setAuth(null) : setAuth(res.body);
+                const res = await Fetch('/users');
+                !res.isSuccess ? setAuth({role: null, username: null}) : setAuth(res.body);
 
-        })()
-    },[auth?.role,auth?.name])
+            })()
+        }
+        return () => { ignore = true }
+    },[auth?.role,auth?.username])
 
     return useContext(AuthContext);
 }

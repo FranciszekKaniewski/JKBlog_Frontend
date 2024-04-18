@@ -11,4 +11,19 @@ header>a{
     text-decoration: none;
     font-size: 18px;
     font-weight: 600;
+    color: var(--DarkGray);
+}
+
+@media only screen and (max-width: 475px) {
+    header{
+        flex-direction: column;
+        height: 200px;
+        margin: 0 auto;
+    }
+    header>a{
+        margin: 0 auto;
+        line-height: 26px;
+        font-size: 18px;
+        font-weight: 600;
+    }
 }

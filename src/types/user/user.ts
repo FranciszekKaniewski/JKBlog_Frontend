@@ -7,9 +7,16 @@ export type User = {
     createTime: Date;
 }
 
+export type UserEditType = {
+    username?: string;
+    name?: string;
+    surname?: string;
+    email?: string;
+}
+
 export type UserInfoType = {
-    username: string;
-    role: string;
+    username: string|null;
+    role: string|null;
 }
 
 export type UserRegister = {

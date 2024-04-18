@@ -5,6 +5,7 @@ export interface PostInfo {
     description: string | null;
     author: string | null;
     createTime: Date;
+    imgUrl: string|null;
 }
 export interface Post {
     id: string;
@@ -14,6 +15,7 @@ export interface Post {
     author: string | null;
     content: string;
     createTime: Date;
+    imgUrl: string|null;
 }
 export interface CreatePostType {
     title: string;
@@ -21,4 +23,5 @@ export interface CreatePostType {
     description: string | null;
     author: string | null;
     content: string;
+    imgUrl: string|null;
 }
