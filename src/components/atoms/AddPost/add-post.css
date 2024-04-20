@@ -1,0 +1,15 @@
+button.add-post{
+    width: 30%;
+    height: 100px;
+    text-decoration: none;
+    background-color: green;
+    font-size: 30px;
+    display: block;
+    margin: 0 auto;
+}
+button.add-post:hover{
+    background: limegreen;
+}
+.add-link{
+    text-decoration: none;
+}

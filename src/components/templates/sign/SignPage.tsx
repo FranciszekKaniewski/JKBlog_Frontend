@@ -8,6 +8,8 @@ import {useAuth} from "../../../hooks/useAuth";
 import {SignInForm} from "../../molecules/SignInForm";
 import {SignUpForm} from "../../molecules/SignUpForm";
 import {usePopUp} from "../../../hooks/usePopUp";
+import {Loading} from "../../atoms/Loading/Loading";
+import {useNavigate } from 'react-router-dom'
 
 export const SignPage = () => {
 
@@ -21,19 +23,24 @@ export const SignPage = () => {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
 
+    const [loading, setLoading] = useState(false);
+
 
     const { setAuth } = useAuth();
     const {printMessage} = usePopUp();
+    const navigate = useNavigate();
 
 
     const loginFetch = async (e) =>{
         e.preventDefault();
+        setLoading(true);
         const res = await login({email,pwd:password});
+        setLoading(false);
 
-        console.log(res)
         if(res.isSuccess) {
             printMessage({text:"Zalogowano",type:"SUCCESS"})
             setAuth({role: res.body.role,name: res.body.username});
+            navigate("/");
         }else{
             res.body === 429 ?
                 printMessage({text:"Zbyt wiele prób logowania! Spróbuj ponownie za 5 min.",type:"ERROR"}):
@@ -44,9 +51,21 @@ export const SignPage = () => {
     }
 
     const registerFetch = async(e) =>{
+
         e.preventDefault();
-        await register({username:userName, email, name, surname,pwd:password});
+        setLoading(true);
+        const res = await register({username:userName, email, name, surname,pwd:password});
+        setLoading(false);
+
+        if(res.isSuccess){
+            printMessage({text:"Konto utworzone poprawnie.",type:"SUCCESS"});
+            navigate('/')
+        }else{
+            printMessage({text:res.body,type:"ERROR"})
+        }
     }
+
+    if(loading) return <Loading />
 
     return (
         <div className="auth">

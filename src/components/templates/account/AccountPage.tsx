@@ -10,6 +10,7 @@ import {usePopUp} from "../../../hooks/usePopUp";
 import {useNavigate} from 'react-router-dom'
 
 import './account.css'
+import {Loading} from "../../atoms/Loading/Loading";
 
 export const AccountPage = () => {
 
@@ -70,7 +71,7 @@ export const AccountPage = () => {
     }
 
     if(!user){
-        return <h1>Loading ...</h1>
+        return <Loading/>
     }
 
 

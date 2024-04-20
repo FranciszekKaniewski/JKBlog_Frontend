@@ -5,6 +5,7 @@ import {getComments} from "../../../api/posts/comments";
 import {CommentType} from "../../../types/posts/comments";
 import {useAuth} from "../../../hooks/useAuth";
 import {sort} from "../../../utils/sort";
+import {Loading} from "../../atoms/Loading/Loading";
 
 
 export const PostComments = ({id}) => {
@@ -31,7 +32,7 @@ export const PostComments = ({id}) => {
         return () => {ignore = true}
     },[auth?.username])
 
-    if(!comments || !auth) return <h1>Loading ...</h1>
+    if(!comments || !auth) return <Loading />
 
     const remove = (id:string) => setComments(prevState => prevState?.filter((e) => e.id != id));
     const add = (comment:CommentType) => {

@@ -17,6 +17,14 @@
     background-size: cover;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.img>img{
+    position: absolute;
+    width: 100%;
+    top: -70%;
 }
 
 .post-info>.text{

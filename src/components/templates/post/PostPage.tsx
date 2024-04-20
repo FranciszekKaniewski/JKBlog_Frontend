@@ -9,6 +9,7 @@ import {useNavigate} from 'react-router-dom'
 import {PostMain} from "../../organisms/PostMain/PostMain";
 import {PostHeader} from "../../organisms/PostHeader/PostHeader";
 import {PostComments} from "../../organisms/PostComments/PostComments";
+import {Loading} from "../../atoms/Loading/Loading";
 
 
 export const PostPage = () => {
@@ -45,9 +46,9 @@ export const PostPage = () => {
         }
     }
 
-    if(!post) return <h1>loading...</h1>
+    if(!post) return <Loading/>
 
-    if(loading) return <h1>Loading</h1>
+    if(loading) return <Loading/>
     return (
         <>
             <PostHeader

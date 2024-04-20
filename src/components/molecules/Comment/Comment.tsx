@@ -6,6 +6,7 @@ import {Button} from "../../atoms/button";
 import {useState} from "react";
 import {deleteComment, editComment} from "../../../api/posts/comments";
 import {usePopUp} from "../../../hooks/usePopUp";
+import {Loading} from "../../atoms/Loading/Loading";
 
 type Props = {
     id: string;
@@ -20,6 +21,7 @@ export const Comment = ({id,username,name,surname,role,createTime,content,remove
 
     const [edit, setEdit] = useState(false);
     const [comment, setComment] = useState(content);
+    const [loading, setLoading] = useState(false);
 
     const { auth } = useAuth();
     const {printMessage} = usePopUp();
@@ -29,7 +31,9 @@ export const Comment = ({id,username,name,surname,role,createTime,content,remove
     }
     const deleteHandle = async () => {
         if(!confirm("Czy napewno chcesz usunąć komentarz?")) return
+        setLoading(true);
         const res = await deleteComment(id);
+        setLoading(false);
 
         if(res.isSuccess) {
             printMessage({text: "Komentarz usunięto poprawnie.", type: "SUCCESS"})
@@ -50,6 +54,7 @@ export const Comment = ({id,username,name,surname,role,createTime,content,remove
         }
     }
 
+    if(loading) return <Loading />
     return(
         <div className='comment'>
             <h3>{username}{role}</h3>

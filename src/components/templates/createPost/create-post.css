@@ -37,3 +37,28 @@ textarea:focus{
     border-color: var(--DarkBlue);
     background: #fff;
 }
+
+/*Editor edit*/
+
+.ql-editor img{
+    max-width: 600px !important;
+    max-height: 600px !important;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+.ql-font-comic-sans{
+    font-family: "Comic Sans MS";
+}
+.ql-font-courier-new{
+    font-family: "Courier New"
+}
+.ql-font-georgia{
+    font-family: "Georgia";
+}
+.ql-font-helvetica{
+    font-family: "Helvetica Neuevetica";
+}
+.ql-font-lucida{
+    font-family: "Lucida Bright";
+}

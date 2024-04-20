@@ -6,6 +6,7 @@ import {sort} from "../../../utils/sort";
 
 import './all-posts.css'
 import {PostsSearchBar} from "../../molecules/PostsSearchBar/PostsSearchBar";
+import {Loading} from "../../atoms/Loading/Loading";
 
 export const AllPosts = () => {
 
@@ -42,7 +43,7 @@ export const AllPosts = () => {
         setSearch(e)
     }
 
-    if(!posts) return <h1>Loading...</h1>
+    if(!posts) return <Loading/>
 
     const postsElement = posts.filter(e =>
         e.title.toUpperCase().includes(search.toUpperCase()) ||

@@ -17,6 +17,12 @@
     max-height: 300px;
 }
 
+.post-main > div> p > img{
+    max-height: 600px;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
 @media only screen and (max-width: 990px) {
     .post-main{
         flex-direction: column;

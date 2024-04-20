@@ -7,10 +7,10 @@ import {usePopUp} from "../../../hooks/usePopUp";
 import {useNavigate} from 'react-router-dom'
 import {CreatePostType} from "../../../types/posts/posts";
 import EditorToolbar, {formats, modules} from "../../../utils/EditorToolbar";
-
+import {config} from "../../../config";
 import './create-post.css'
 import 'react-quill/dist/quill.snow.css';
-import {config} from "../../../config";
+
 
 
 export const CreatePost = () => {
@@ -123,7 +123,7 @@ export const CreatePost = () => {
             <span>Opis wpisu:</span>
             <textarea cols="10" rows="10" value={description} onChange={(e)=>setDescription(e.target.value)}></textarea>
             <EditorToolbar />
-            <ReactQuill modules={modules} formats={formats} theme="snow" value={content} onChange={setContent} required={true}/>
+            <ReactQuill modules={modules} formats={formats}  theme="snow" value={content} onChange={setContent} required={true}/>
             {edit ? <Button text={"Cofnij zmiany"} onClick={backChanges}/> : null}
             <Button text={edit?'Zapisz zmiany':'Utwóż wpis'}/>
 

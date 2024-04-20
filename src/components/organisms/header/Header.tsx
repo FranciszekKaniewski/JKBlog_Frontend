@@ -7,8 +7,6 @@ import {useState} from "react";
 
 export const Header = () => {
 
-    const [list, setList] = useState(false);
-
     const { auth } = useAuth()
 
     return(
