@@ -1,6 +1,9 @@
-export const dataConvert = (data:Date) => {
+export const dataConvert = (data:Date,time=false) => {
 
     const dateFormat = new Date(data)
+    const date = dateFormat.toLocaleDateString();
 
-    return dateFormat.toLocaleDateString();
+    return !time ?
+        date :
+        `${date} ${dateFormat.getHours()}:${dateFormat.getMinutes()}`
 }

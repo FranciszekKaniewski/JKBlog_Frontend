@@ -8,6 +8,7 @@ import {usePopUp} from "../../../hooks/usePopUp";
 import {useNavigate} from 'react-router-dom'
 import {PostMain} from "../../organisms/PostMain/PostMain";
 import {PostHeader} from "../../organisms/PostHeader/PostHeader";
+import {PostComments} from "../../organisms/PostComments/PostComments";
 
 
 export const PostPage = () => {
@@ -58,6 +59,7 @@ export const PostPage = () => {
                 deleteHandler={deleteHandler}
             />
             <PostMain title={post.title} content={post.content} category={post.category}/>
+            <PostComments id={post.id}/>
         </>
     )
 }

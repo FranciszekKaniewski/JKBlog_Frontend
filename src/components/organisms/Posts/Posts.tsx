@@ -10,13 +10,17 @@ export const Posts = () => {
 
     const [posts, setPosts] = useState<PostInfo[]|null>(null);
 
+    let ignore = false;
     useEffect(()=> {
-        (async()=>{
-            const posts = await getPosts()
-            const sorted = sort(posts,'ASC');
+        if(!ignore) {
+            (async () => {
+                const posts = await getPosts()
+                const sorted = sort(posts, 'ASC');
 
-            setPosts(sorted);
-        })()
+                setPosts(sorted);
+            })()
+        }
+        return () => {ignore = true}
     },[])
 
     const postsElement = posts?.slice(0, 5).map(e =>

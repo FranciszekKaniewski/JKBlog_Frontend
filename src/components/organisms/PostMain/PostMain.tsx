@@ -22,7 +22,7 @@ export const PostMain = ({title,content,category}) => {
     }, []);
 
 
-    const posts = promotePosts?.slice(0,3).filter(e => e.title != title).map(e => <PostInfoSquare id={e.id} title={e.title} category={e.category} description={e.description} author={e.author} createTime={e.createTime}/>)
+    const posts = promotePosts?.slice(0,3).filter(e => e.title != title).map(e => <PostInfoSquare key={e.id} id={e.id} title={e.title} category={e.category} description={e.description} author={e.author} createTime={e.createTime}/>)
 
     return(
         <main className='post-main'>

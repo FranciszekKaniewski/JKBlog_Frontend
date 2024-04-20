@@ -1,0 +1,22 @@
+.add-comment{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 30px;
+}
+.add-comment>h4{
+    margin: 10px;
+}
+.add-comment>textarea{
+    font-family: Lato;
+    padding: 10px;
+    margin: 0;
+    width: 60%;
+    min-height: 120px;
+    resize:none
+}
+@media only screen and (max-width: 990px) {
+    .add-comment>textarea{
+        width: calc(100% - 20px);
+    }
+}
