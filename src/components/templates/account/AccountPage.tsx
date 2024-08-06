@@ -1,6 +1,6 @@
 import {Button} from "../../atoms/button";
 import {logout} from "../../../api/auth/logout";
-import {useEffect, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import {User} from "../../../types/user/user";
 import {Fetch} from "../../../utils/fetch";
 import {dataConvert} from "../../../utils/dataConvert";
@@ -31,7 +31,7 @@ export const AccountPage = () => {
         return () => { ignore = true }
     },[edit])
 
-    const submitHandler = async (e) => {
+    const submitHandler = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const obj = {
             username: e.target[0].value ? e.target[0].value: user?.username,
@@ -50,7 +50,7 @@ export const AccountPage = () => {
             printMessage({text: "Zaktualizowano profil", type: "SUCCESS"})
             setEdit(prevState => !prevState)
         }else{
-            printMessage({text: res.body, type: "ERROR"})
+            printMessage({text: (res.body as string), type: "ERROR"})
         }
     }
 
@@ -82,22 +82,22 @@ export const AccountPage = () => {
             <form onSubmit={submitHandler}>
                 <UserData alias={'Nazwa konta'} value={user.username} edit={edit}/>
                 <UserData alias={'E-mail'} value={user.email} edit={edit}/>
-                <UserData alias={'Imię'} value={user.name} edit={edit}/>
-                <UserData alias={'Nazwisko'} value={user.surname} edit={edit}/>
+                <UserData alias={'Imię'} value={user.name ?? ''} edit={edit}/>
+                <UserData alias={'Nazwisko'} value={user.surname ?? ''} edit={edit}/>
                 <Button text={'Zapisz'}/>
                 <Button text={'Cofnij zmiany'} onClick={() => setEdit(prevState => !prevState)}/>
             </form> :
             <>
                 <UserData alias={'Nazwa konta'} value={user.username} edit={edit}/>
                 <UserData alias={'E-mail'} value={user.email} edit={edit}/>
-                <UserData alias={'Imię'} value={user.name} edit={edit}/>
-                <UserData alias={'Nazwisko'} value={user.surname} edit={edit}/>
+                <UserData alias={'Imię'} value={user.name ?? ''} edit={edit}/>
+                <UserData alias={'Nazwisko'} value={user.surname ?? ''} edit={edit}/>
             </>
             }
             <UserData alias={'Data dołączenia'} value={dataConvert(user.createTime)}/>
             {!edit?<Button text={'Edytuj dane'} onClick={() => setEdit(prevState => !prevState)}/>:null} <br/>
-            <Button text={'Zmień hasło'} onClick={password} edit={edit}/> <br/>
-            <Button text={'Wyloguj się'} onClick={logoutHandler} edit={edit}/>
+            <Button text={'Zmień hasło'} onClick={password} /> <br/>
+            <Button text={'Wyloguj się'} onClick={logoutHandler} />
         </div>
     )
 }

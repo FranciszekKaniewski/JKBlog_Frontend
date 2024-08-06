@@ -5,7 +5,13 @@ import {useEffect, useState} from "react";
 import {PostInfo} from "../../../types/posts/posts";
 import {getPostByCat} from "../../../api/posts/posts";
 
-export const PostMain = ({title,content,category}) => {
+type Props = {
+    title: string;
+    content: string;
+    category: string;
+}
+
+export const PostMain = ({title,content,category}:Props) => {
     const [promotePosts, setPromotePosts] = useState<PostInfo[]|null>(null);
 
     let ignore = false;
@@ -22,7 +28,7 @@ export const PostMain = ({title,content,category}) => {
     }, []);
 
 
-    const posts = promotePosts?.slice(0,3).filter(e => e.title != title).map(e => <PostInfoSquare key={e.id} id={e.id} title={e.title} category={e.category} description={e.description} author={e.author} createTime={e.createTime}/>)
+    const posts = promotePosts?.slice(0,3).filter(e => e.title != title).map(e => <PostInfoSquare key={e.id} id={e.id} title={e.title} category={e.category} description={e.description} author={e.author} createTime={e.createTime} imgUrl={e.imgUrl}/>)
 
     return(
         <main className='post-main'>

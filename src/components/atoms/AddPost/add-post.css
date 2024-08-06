@@ -1,14 +1,14 @@
 button.add-post{
-    width: 30%;
-    height: 100px;
+    width: 20%;
+    height: 60px;
     text-decoration: none;
-    background-color: green;
+    background-color: #4ea43f;
     font-size: 30px;
     display: block;
-    margin: 0 auto;
+    margin: 5px auto;
 }
 button.add-post:hover{
-    background: limegreen;
+    background: #1c7a15;
 }
 .add-link{
     text-decoration: none;

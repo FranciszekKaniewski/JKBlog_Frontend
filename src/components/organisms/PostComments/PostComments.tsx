@@ -8,11 +8,11 @@ import {sort} from "../../../utils/sort";
 import {Loading} from "../../atoms/Loading/Loading";
 
 
-export const PostComments = ({id}) => {
+export const PostComments = ({id}:{id:string}) => {
 
     const [comments, setComments] = useState<CommentType[]|null>(null);
     const [canComment, setCanComment] = useState(false);
-
+    //@ts-ignore
     const {auth} = useAuth();
 
 
@@ -23,7 +23,7 @@ export const PostComments = ({id}) => {
                 const res = await getComments(id);
                 const sorted = sort(res.body)
                 setComments(sorted);
-                if(!res.body.filter(e=> e.user.username === auth.username)[0] && auth.role){
+                if(!res.body.filter((e:any) => e.user.username === auth.username)[0] && auth.role){
                     setCanComment(true);
                 }
             })()
@@ -34,13 +34,15 @@ export const PostComments = ({id}) => {
 
     if(!comments || !auth) return <Loading />
 
-    const remove = (id:string) => setComments(prevState => prevState?.filter((e) => e.id != id));
-    const add = (comment:CommentType) => {
-        setComments(prevState => [comment, ...prevState]);
+    const remove = (id:string):void => {
+        setComments(prevState => (prevState as CommentType[])?.filter((e: CommentType) => e.id != id));
+    }
+    const add = (comment:CommentType):void => {
+        setComments(prevState => [comment, ...(prevState as CommentType[])]);
         setCanComment(false);
     }
     const update = (id: string, content: string) => setComments(prevState => {
-        const obj = {...prevState?.filter(e => e.id === id)[0],content};
+        const obj = {...(prevState as CommentType[])?.filter(e => e.id === id)[0],content};
         const pState = prevState?.filter((e) => e.id != id);
         return [obj,...pState]
     });

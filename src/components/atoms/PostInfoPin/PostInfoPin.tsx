@@ -1,5 +1,8 @@
 import './post-info-pin.css'
-export const PostInfoPin = ({text}) => {
+type Props = {
+    text: string;
+}
+export const PostInfoPin = ({text}:Props) => {
     return(
         <span className='pin'>{text}</span>
     )

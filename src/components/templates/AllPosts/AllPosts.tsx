@@ -18,6 +18,7 @@ export const AllPosts = () => {
     const [search, setSearch] = useState<string>('');
 
 
+    //@ts-ignore
     let ignore = false;
     useEffect(()=> {
         (async()=>{

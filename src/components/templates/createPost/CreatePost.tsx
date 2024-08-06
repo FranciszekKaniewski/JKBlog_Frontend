@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import {Input} from "../../atoms/input";
 import {Button} from "../../atoms/button";
@@ -34,6 +34,7 @@ export const CreatePost = () => {
     const navigate = useNavigate();
 
 
+    //@ts-ignore
     let ignore = false;
     useEffect(()=>{
         (async ()=>{
@@ -107,8 +108,9 @@ export const CreatePost = () => {
 
     return (
         <form className='post-editor' onSubmit={handleSubmit}>
-            {img ? <img src={img} alt="" width={250} height={250}/> : null}
+            {img ? <img src={(img as string)} alt="" width={250} height={250}/> : null}
             <input
+                //@ts-ignore
                 {...("file", { required: !edit })}
                 type="file"
                 accept=".png, .jpg, .jpeg"
@@ -121,9 +123,10 @@ export const CreatePost = () => {
             <span>Kategoria wpisu:</span>
             <Input value={category} onChange={setCategory} required={true}/>
             <span>Opis wpisu:</span>
-            <textarea cols="10" rows="10" value={description} onChange={(e)=>setDescription(e.target.value)}></textarea>
+            <textarea maxLength={1000} minLength={3} cols={10} rows={10} value={description} onChange={(e)=>setDescription(e.target.value)}></textarea>
             <EditorToolbar />
-            <ReactQuill modules={modules} formats={formats}  theme="snow" value={content} onChange={setContent} required={true}/>
+
+            <ReactQuill modules={modules} formats={formats}  theme="snow" value={content} onChange={setContent} />
             {edit ? <Button text={"Cofnij zmiany"} onClick={backChanges}/> : null}
             <Button text={edit?'Zapisz zmiany':'Utwóż wpis'}/>
 

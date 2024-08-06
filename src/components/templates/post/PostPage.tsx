@@ -18,6 +18,7 @@ export const PostPage = () => {
     const [loading, setLoading] = useState(false);
 
     const { title } = useParams()
+    //@ts-ignore
     const {auth} = useAuth()
     const navigate = useNavigate();
     const {printMessage} = usePopUp()

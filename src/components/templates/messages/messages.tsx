@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import {useContext} from "react";
 import {messagesContext} from "../../../contexts/MessagesContext";
 import {PopUp} from "../../molecules/PopUp/PopUp";
 

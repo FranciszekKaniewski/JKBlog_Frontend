@@ -1,4 +1,4 @@
-type sortDirType = 'ASC' | 'DESC'
+export type sortDirType = 'ASC' | 'DESC'
 type ByType = 'DATE' | 'TITLE' | 'CATEGORY'
 
 

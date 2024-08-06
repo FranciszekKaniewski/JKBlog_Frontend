@@ -3,7 +3,7 @@ import './button.css'
 type Props = {
     active?: boolean;
     text: string;
-    onClick: any;
+    onClick?: any;
 }
 const activeStyle = {background: 'var(--DarkOrange)'}
 

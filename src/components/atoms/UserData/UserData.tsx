@@ -1,7 +1,14 @@
 import {useState} from "react";
 
-export const UserData = ({alias,value,required,edit=false}) => {
-    const [inputValue, setInputValue] = useState<string|null>(value);
+type Props = {
+    alias: string;
+    value: string;
+    required?: boolean;
+    edit?: boolean;
+}
+
+export const UserData = ({alias,value,required,edit=false}:Props) => {
+    const [inputValue, setInputValue] = useState<string|null>(value??'');
 
     return !edit ?
         <>

@@ -25,7 +25,7 @@ export const SignPage = () => {
 
     const [loading, setLoading] = useState(false);
 
-
+    //@ts-ignore
     const { setAuth } = useAuth();
     const {printMessage} = usePopUp();
     const navigate = useNavigate();
@@ -39,6 +39,7 @@ export const SignPage = () => {
 
         if(res.isSuccess) {
             printMessage({text:"Zalogowano",type:"SUCCESS"})
+            //@ts-ignore
             setAuth({role: res.body.role,name: res.body.username});
             navigate("/");
         }else{

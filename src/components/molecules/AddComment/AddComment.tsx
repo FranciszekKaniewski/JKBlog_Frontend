@@ -5,12 +5,17 @@ import {postComment} from "../../../api/posts/comments";
 import {usePopUp} from "../../../hooks/usePopUp";
 import {Loading} from "../../atoms/Loading/Loading";
 
-export const AddComment = ({ id,add }) => {
+type Props = {
+    id: string;
+    add: (body:any)=>void
+}
+
+export const AddComment = ({ id,add }:Props) => {
 
     const [comment, setComment] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const {printMessage} = usePopUp()
+    const { printMessage } = usePopUp();
 
     const submitHandler = async () => {
         setLoading(true);
@@ -28,10 +33,10 @@ export const AddComment = ({ id,add }) => {
 
     if(loading) return <Loading />
     return(
-        <from className='add-comment'>
+        <form className='add-comment'>
             <h4>Dodaj komentarz:</h4>
             <textarea value={comment} onChange={(e)=>setComment(e.target.value)}/>
             <Button text={'Wiślij'} onClick={submitHandler} />
-        </from>
+        </form>
     )
 }

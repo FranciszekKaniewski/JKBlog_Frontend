@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-
+import {useAuth} from "../../../hooks/useAuth";
 import logo from '../../../assets/imgs/jk.png'
 import './header.css'
-import {useAuth} from "../../../hooks/useAuth";
-import {useState} from "react";
+
 
 export const Header = () => {
-
+    //@ts-ignore
     const { auth } = useAuth()
 
     return(

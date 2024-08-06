@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FormEvent} from "react";
 
 import {Input} from "../atoms/input";
 import {Button} from "../atoms/button";
@@ -15,11 +15,11 @@ type Props = {
     setName: React.Dispatch<React.SetStateAction<string>>;
     setSurname: React.Dispatch<React.SetStateAction<string>>;
     setPassword: React.Dispatch<React.SetStateAction<string>>;
-    registerFetch: (e) => Promise<void>;
+    registerFetch: (e:FormEvent) => Promise<void>;
 }
 
 export const SignUpForm = ({userName,email,name,surname,password,setUserName,setEmail,setName,setSurname,setPassword,registerFetch}:Props) => (
-    <form onSubmit={registerFetch}>
+    <form onSubmit={(e)=>registerFetch(e)}>
         <Input placeholder={"nazwa konta*"} value={userName} required={true} onChange={setUserName}/>
         <Input placeholder={"email*"} value={email} required={true} onChange={setEmail}/>
         <Input placeholder={"imię"} value={name} onChange={setName}/>

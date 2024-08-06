@@ -1,9 +1,9 @@
-import {useContext, useEffect} from "react";
+import { useContext, useEffect} from "react";
 import {AuthContext} from "../contexts/AuthContext";
 import {Fetch} from "../utils/fetch";
 
 export const useAuth = () => {
-
+    //@ts-ignore
     const {auth, setAuth} = useContext(AuthContext);
 
     let ignore = false;

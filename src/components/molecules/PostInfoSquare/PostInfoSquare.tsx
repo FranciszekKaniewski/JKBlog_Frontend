@@ -9,7 +9,7 @@ import {config} from "../../../config";
 import './post-info-square.css';
 
 
-export const PostInfoSquare = ({id,title,category,description,author,createTime,imgUrl}:PostInfo) => {
+export const PostInfoSquare = ({title,category,description,createTime,imgUrl}:PostInfo) => {
 
     const imgStyle = {backgroundImage: `url("${config.backendURL}/img/${imgUrl?.replace(/['"]+/g, '')}")`};
 

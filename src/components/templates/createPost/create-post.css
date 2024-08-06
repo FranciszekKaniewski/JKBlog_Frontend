@@ -49,6 +49,7 @@ textarea:focus{
 
 .ql-font-comic-sans{
     font-family: "Comic Sans MS";
+    color: black;
 }
 .ql-font-courier-new{
     font-family: "Courier New"
@@ -61,4 +62,12 @@ textarea:focus{
 }
 .ql-font-lucida{
     font-family: "Lucida Bright";
+}
+
+@media only screen and (max-width: 768px) {
+    .post-main>div>p>img{
+        max-width: calc(100% - 20px) !important;
+        max-height: 600px !important;
+        margin: 10px;
+    }
 }

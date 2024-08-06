@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "http://127.0.0.1:5500/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -20,6 +21,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/node": "^20.12.7",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

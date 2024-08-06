@@ -1,6 +1,6 @@
 import {createContext, useState} from "react";
 import {UserInfoType} from "../types/user/user";
-
+//@ts-ignore
 const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {

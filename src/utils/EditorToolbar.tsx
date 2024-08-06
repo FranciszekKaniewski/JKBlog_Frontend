@@ -1,4 +1,3 @@
-import React from "react";
 import { Quill } from "react-quill";
 import {uploadImg} from "../api/posts/posts";
 import {config} from "../config";
@@ -67,6 +66,7 @@ export const modules = {
 
                     const res = await uploadImg(file);
                     const range = this.quill.getSelection();
+                    //@ts-ignore
                     const link = `${config.backendURL}/img/${res.body.imageName}`;
 
                     this.quill.insertEmbed(range.index, 'image', link);

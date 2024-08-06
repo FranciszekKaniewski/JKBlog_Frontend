@@ -16,6 +16,8 @@ type Props = {
     role: string;
     createTime: Date;
     content: string;
+    remove:(id:string)=>void
+    update:(id: string, content: string)=>void
 }
 export const Comment = ({id,username,name,surname,role,createTime,content,remove,update}:Props) => {
 
@@ -23,6 +25,7 @@ export const Comment = ({id,username,name,surname,role,createTime,content,remove
     const [comment, setComment] = useState(content);
     const [loading, setLoading] = useState(false);
 
+    //@ts-ignore
     const { auth } = useAuth();
     const {printMessage} = usePopUp();
 

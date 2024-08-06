@@ -1,5 +1,5 @@
 import {Fetch} from "../../utils/fetch";
-import {CreatePost, Post, PostInfo} from "../../types/posts/posts";
+import {CreatePostType, Post, PostInfo} from "../../types/posts/posts";
 import {config} from "../../config";
 
 export const getPosts = async ():Promise<PostInfo[]|null> => {
@@ -20,11 +20,11 @@ export const getPost = async (title:string):Promise<Post|null> => {
     return response;
 }
 
-export const createPost = async (post:CreatePost):Promise<{isSuccess:boolean,body:string|Post}> => (
+export const createPost = async (post:CreatePostType):Promise<{isSuccess:boolean,body:string|Post}> => (
     await Fetch(`/posts`,'POST',post)
 )
 
-export const editPost = async (title:string,post:CreatePost):Promise<{isSuccess:boolean,body:string|Post}> =>(
+export const editPost = async (title:string,post:CreatePostType):Promise<{isSuccess:boolean,body:string|Post}> =>(
     await Fetch(`/posts/${title}`,'PATCH',post)
 )
 
@@ -32,7 +32,7 @@ export const deletePost = async (id:string):Promise<{isSuccess:boolean,body:stri
     await Fetch(`/posts/${id}`,'DELETE')
 )
 
-export const getPostByCat = async (category:string):Promise<{isSuccess:boolean,body:PostInfo}> => (
+export const getPostByCat = async (category:string):Promise<{isSuccess:boolean,body:PostInfo[]}> => (
     await Fetch(`/posts/category/${category}`,'GET')
 )
 
@@ -52,3 +52,11 @@ export const uploadImg = async (file:any):Promise<{isSuccess:boolean,body:string
         :
         {isSuccess: false, body: resBody.message};
 }
+
+export const getImgsNames = async ():Promise<{isSuccess:boolean,body:string[]}> => (
+    await Fetch(`/img`,'GET')
+)
+
+export const deleteImg = async (fileName:string):Promise<{isSuccess:boolean,body:string}> => (
+    await Fetch(`/img/${fileName}`,'DELETE')
+)
