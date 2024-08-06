@@ -1,0 +1,36 @@
+.imgs-gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.imgs-gallery>p{
+    position: relative;
+}
+
+.zdjęcia{
+    text-align: center;
+}
+
+.x{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 99;
+    color: darkred;
+    font-weight: bold;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    text-align: center;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    font-family: Verdana;
+}
+
+.imgs-gallery>p>img{
+    border-radius: 4px;
+    margin: auto 5px;
+}
