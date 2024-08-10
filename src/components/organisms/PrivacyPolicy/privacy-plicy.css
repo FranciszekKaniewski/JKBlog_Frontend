@@ -1,0 +1,17 @@
+.policy {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+.policy>.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+}
+policy>div>h1, h2, h3 {
+    color: #444;
+}

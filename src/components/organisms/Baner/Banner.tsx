@@ -4,7 +4,7 @@ export const Banner = () => (
         <div className="banner">
             <div className="img"></div>
             <div className="text">
-                <h1>Joanna Kaniewska</h1>
+                <h1>Joanna Wiśniewska</h1>
                 <span>
                     Absolwentka wydziału medycyny weterynaryjnej w warszawskiej Szkole Głównej Gospodarstwa Wiejskiego.
                     Od początku swojej pracy zawodowej zajmuje się leczeniem małych ssaków - gryzoni i zajęczaków.

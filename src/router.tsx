@@ -8,6 +8,8 @@ import {CreatePostLayout} from "./layouts/CreatePost";
 import {AllPostsLayout} from "./layouts/AllPostsLayout";
 import {ChangePassword} from "./layouts/ChangePassword";
 import {GalleryLayout} from "./layouts/GalleryLayout.tsx";
+import {PrivacyPolicyLayout} from "./layouts/PrivacyPolicy.tsx";
+import {CookiePolicyLayout} from "./layouts/CookiePolicy.tsx";
 
 
 export const router = createBrowserRouter([
@@ -51,5 +53,15 @@ export const router = createBrowserRouter([
         element: <Auth allowedRoles={['admin']} page={<GalleryLayout />} errorPage={"/"}/>,
         errorElement: <HomeLayout/>
     },
+        {
+            path: "/privacy",
+            element: <PrivacyPolicyLayout />,
+            errorElement: <HomeLayout/>
+        },
+        {
+            path: "/cookie",
+            element: <CookiePolicyLayout />,
+            errorElement: <HomeLayout/>
+        },
 ],
     {basename: '/'});
