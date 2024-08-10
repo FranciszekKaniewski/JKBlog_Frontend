@@ -20,8 +20,9 @@ export const Gallery = () => {
     const {printMessage} = usePopUp();
 
     const deleteHandler = async (name:string) => {
+        if(!confirm(`Czy na pewno chcesz usunąć zdjęcie ${name}`)) return;
         const res = await deleteImg(name)
-        console.log(res)
+
         if(!res.isSuccess){
             printMessage({text:res.body,type:"ERROR"})
         }else{
