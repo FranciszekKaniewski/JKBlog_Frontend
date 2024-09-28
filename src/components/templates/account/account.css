@@ -1,6 +1,10 @@
 .account-page{
     margin: 60px;
 }
+.account-page>.alias{
+    font-weight: 600;
+    font-size: 18px;
+}
 @media only screen and (max-width: 575px) {
     .account-page{
         margin: 10px;

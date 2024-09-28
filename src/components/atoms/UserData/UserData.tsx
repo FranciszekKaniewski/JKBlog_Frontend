@@ -12,8 +12,9 @@ export const UserData = ({alias,value,required,edit=false}:Props) => {
 
     return !edit ?
         <>
-            <h3>{alias}:</h3>
-            <h4 style={!value ? {color: 'var(--Gray)'}:{}}>{value ? value : 'Brak'}</h4>
+            <span className={'alias'}>{alias}: </span>
+            <span style={!value ? {color: 'var(--Gray)'}:{}}>{value ? value : 'Brak'}</span>
+            <br/><br/>
         </> :
         <>
             <h3>{alias}:</h3>
