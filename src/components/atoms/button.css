@@ -13,16 +13,3 @@ button{
 button:hover{
     background-color: var(--DarkBlue);
 }
-
-button.show-gallery{
-    width: 20%;
-    height: 60px;
-    text-decoration: none;
-    background-color: #936842;
-    font-size: 30px;
-    display: block;
-    margin: 5px auto;
-}
-button.show-gallery:hover{
-    background-color: #7a3e10;
-}

@@ -1,8 +1,18 @@
 .messages{
     position: fixed;
-    width: 500px;
+    width: 530px;
     height: 20%;
-    right: 1%;
+    right: 0;
     top: 2%;
-    overflow-y: scroll;
+    overflow: hidden;
+    transform: translate(0px, 0px);
+}
+
+@media only screen and (max-width: 1024px) {
+    .messages {
+        left: 0;
+        right: 0;
+        width: 90%;
+        max-width: 100%;
+    }
 }

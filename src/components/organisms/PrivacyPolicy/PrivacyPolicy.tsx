@@ -40,13 +40,10 @@ export const PrivacyPolicy = () => (
         <li>Sprzeciwu wobec przetwarzania danych.</li>
         <li>Przenoszenia danych.</li>
     </ul>
-    <p>W celu skorzystania z powyższych praw, użytkownicy mogą skontaktować się z nami pod adresem e-mail: <a href="mailto:kontakt@primablog.com">kontakt@primablog.com</a>.</p>
+    <p>W celu skorzystania z powyższych praw, użytkownicy mogą skontaktować się z nami pod adresem e-mail: joankaka@o2.pl.</p>
 
     <h2>7. Zmiany w Polityce Prywatności</h2>
     <p>Prima Blog zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce Prywatności. Wszelkie zmiany będą publikowane na naszej stronie internetowej, a użytkownicy będą informowani o istotnych zmianach za pośrednictwem e-maila.</p>
-
-    <h2>8. Kontakt</h2>
-    <p>W razie pytań lub wątpliwości dotyczących niniejszej Polityki Prywatności, prosimy o kontakt na adres e-mail: <a href="mailto:kontakt@primablog.com">kontakt@primablog.com</a>.</p>
 </div>
 </body>
 )

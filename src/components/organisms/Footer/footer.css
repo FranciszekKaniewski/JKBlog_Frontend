@@ -19,6 +19,10 @@ footer>.icons{
     display: flex;
     justify-content: center;
 }
+footer>div>p>a{
+    color: var(--DarkGray);
+    text-decoration: none;
+}
 
 @media only screen and (max-width: 768px) {
     footer {

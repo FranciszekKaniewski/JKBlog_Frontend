@@ -40,10 +40,6 @@ export const CookiePolicy = () => (
         <h2>6. Zmiany w Polityce Cookies</h2>
         <p>Zastrzegamy sobie prawo do wprowadzania zmian w niniejszej Polityce Cookies. Wszelkie zmiany będą publikowane
             na naszej stronie internetowej.</p>
-
-        <h2>7. Kontakt</h2>
-        <p>W razie pytań dotyczących niniejszej Polityki Cookies, prosimy o kontakt na adres e-mail: <a
-            href="mailto:kontakt@primablog.com">kontakt@primablog.com</a>.</p>
     </div>
     </body>
 )
