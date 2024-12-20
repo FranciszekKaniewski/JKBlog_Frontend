@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import {Input} from "../../atoms/input";
 import {Button} from "../../atoms/button";
-import {createPost, editPost, getPost, uploadImg} from "../../../api/posts/posts";
+import {createPost, deleteImg, editPost, getPost, uploadImg} from "../../../api/posts/posts";
 import {usePopUp} from "../../../hooks/usePopUp";
 import {useNavigate} from 'react-router-dom'
 import {CreatePostType} from "../../../types/posts/posts";
@@ -71,15 +71,7 @@ export const CreatePost = () => {
         const post = {title,description,author,category,content}
 
         let resImg = null;
-        if(file) {
-            resImg = await uploadImg(file);
-            if (resImg.isSuccess) {
-                printMessage({text: "Zdjęcie dodane poprawnie!", type: 'SUCCESS'});
-            } else {
-                printMessage({text: resImg.body[0], type: 'ERROR'});
-                return;
-            }
-        }
+        if(file) resImg = await uploadImg(file);
 
         const imgToSend = resImg ? resImg.body.imageName : null
 
@@ -87,8 +79,16 @@ export const CreatePost = () => {
         if(res.isSuccess) {
             navigate(`/wpisy/${title}`);
             printMessage({text:"Wpis dodano poprawnie!",type:'SUCCESS'});
+            if (resImg?.isSuccess) {
+                printMessage({text: "Zdjęcie dodane poprawnie!", type: 'SUCCESS'});
+            } else {
+                printMessage({text: resImg?.body[0], type: 'ERROR'});
+                return;
+            }
         }else{
+            console.log("xd");
             printMessage({text:res.body[0],type:'ERROR'});
+            await deleteImg(imgToSend);
         }
     }
 
@@ -117,11 +117,11 @@ export const CreatePost = () => {
                 onChange={imgPreview}
             />
             <span>Tytuł wpisu:</span>
-            <Input value={title} onChange={setTitle} required={true}/>
+            <Input value={title} onChange={setTitle} required={true} min={3}/>
             <span>Autor wpisu:</span>
-            <Input value={author} onChange={setAuthor} required={true}/>
+            <Input value={author} onChange={setAuthor} required={true} min={3}/>
             <span>Kategoria wpisu:</span>
-            <Input value={category} onChange={setCategory} required={true}/>
+            <Input value={category} onChange={setCategory} required={true} min={3}/>
             <span>Opis wpisu:</span>
             <textarea maxLength={1000} minLength={3} cols={10} rows={10} value={description} onChange={(e)=>setDescription(e.target.value)}></textarea>
             <EditorToolbar />
